@@ -1,57 +1,33 @@
 import { motion } from "motion/react";
-import { Mail, Linkedin, BookOpen, GraduationCap, Send } from "lucide-react";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Textarea } from "./ui/textarea";
-import { useState } from "react";
+import { Mail, Linkedin, GraduationCap } from "lucide-react";
 
 const contactMethods = [
   {
     icon: Mail,
     label: "Email",
-    value: "muskanrajak0506@gmail.com",
+    value: "Email Me",
     href: "mailto:muskanrajak0506@gmail.com",
     color: "from-[#003CFF] to-[#0057FF]",
   },
   {
     icon: Linkedin,
     label: "LinkedIn",
-    value: "/in/muskanrajak",
-    href: "https://linkedin.com/in/muskanrajak",
+    value: "Connect on LinkedIn",
+    href: "https://www.linkedin.com/in/muskan-rajak-387b81233/",
     color: "from-[#0057FF] to-[#4F7CFF]",
-  },
-  {
-    icon: BookOpen,
-    label: "ResearchGate",
-    value: "Muskan Rajak",
-    href: "https://researchgate.net",
-    color: "from-[#4F7CFF] to-[#003CFF]",
   },
   {
     icon: GraduationCap,
     label: "Google Scholar",
     value: "View Profile",
-    href: "https://scholar.google.com",
+    href: "https://scholar.google.com/citations?hl=en&view_op=list_works&gmla=ACrTK9U0blehwZV4QHUaIgIdm9OxxcWzMpzxP8KoWZBtwD1lwiFi_1W1dkv1zo_khT-b41VcxMGLzVTsE0cIEtuhnuzl&user=jqgo-k0AAAAJ",
     color: "from-[#003CFF] to-[#4F7CFF]",
   },
 ];
 
 export function ContactSection() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", formData);
-  };
-
   return (
-    <section className="py-24 bg-gradient-to-br from-[#0F172A] to-[#1e293b] text-white relative overflow-hidden">
+    <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-[#0F172A] to-[#1e293b] text-white relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
@@ -81,7 +57,7 @@ export function ContactSection() {
         />
       </div>
 
-      <div className="container mx-auto px-6 lg:px-8 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -89,6 +65,7 @@ export function ContactSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
+      
           <div className="inline-block mb-6">
             <span className="px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white text-sm font-medium backdrop-blur-sm">
               Get In Touch
@@ -102,12 +79,12 @@ export function ContactSection() {
             </span>
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto" style={{ fontFamily: 'var(--font-body)' }}>
-            Whether you need research assistance, academic writing, or content strategy,
+            Whether you need editing done, research assistance, academic writing, or content strategy,
             I'm here to help bring your ideas to life.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
           {/* Left - Contact Methods */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -132,14 +109,22 @@ export function ContactSection() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     whileHover={{ x: 8 }}
-                    className="flex items-center gap-4 p-6 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 group"
+                    className="flex items-center gap-3 sm:gap-4 p-4 sm:p-6 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 group overflow-hidden"
                   >
-                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${method.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon className="w-7 h-7 text-white" />
+                    <div
+                      className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br ${method.color} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}
+                    >
+                      <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
                     </div>
-                    <div>
-                      <p className="text-sm text-gray-400 mb-1">{method.label}</p>
-                      <p className="text-lg font-semibold text-white">{method.value}</p>
+
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm text-gray-400 mb-1">
+                        {method.label}
+                      </p>
+
+                      <p className="text-base sm:text-lg font-semibold text-white break-all">
+                        {method.value}
+                      </p>
                     </div>
                   </motion.a>
                 );
@@ -173,81 +158,58 @@ export function ContactSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h3 className="text-2xl font-bold mb-8" style={{ fontFamily: 'var(--font-heading)' }}>
-              Send a Message
+            <h3
+              className="text-2xl font-bold mb-4"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              Let's Start a Conversation
             </h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2 text-gray-300">
-                  Your Name
-                </label>
-                <Input
-                  id="name"
-                  type="text"
-                  placeholder="John Doe"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-[#003CFF] focus:ring-[#003CFF] h-12"
-                  required
-                />
-              </div>
 
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2 text-gray-300">
-                  Email Address
-                </label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="john@example.com"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-[#003CFF] focus:ring-[#003CFF] h-12"
-                  required
-                />
-              </div>
+            <p className="text-gray-300 mb-8 leading-relaxed">
+              Whether you're looking for research assistance, academic editing,
+              content development, publication support, or collaboration
+              opportunities, I'd love to hear from you.
+            </p>
 
-              <div>
-                <label htmlFor="subject" className="block text-sm font-medium mb-2 text-gray-300">
-                  Subject
-                </label>
-                <Input
-                  id="subject"
-                  type="text"
-                  placeholder="Research Collaboration Inquiry"
-                  value={formData.subject}
-                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                  className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-[#003CFF] focus:ring-[#003CFF] h-12"
-                  required
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2 text-gray-300">
-                  Message
-                </label>
-                <Textarea
-                  id="message"
-                  placeholder="Tell me about your project..."
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-[#003CFF] focus:ring-[#003CFF] min-h-[150px]"
-                  required
-                />
-              </div>
-
-              <Button
-                type="submit"
-                size="lg"
-                className="w-full bg-gradient-to-r from-[#003CFF] to-[#0057FF] hover:from-[#0057FF] hover:to-[#003CFF] text-white py-6 rounded-xl shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300"
+            <div className="space-y-4">
+              <a
+                href="mailto:muskanrajak0506@gmail.com"
+                className="w-full inline-flex items-center justify-center bg-[#003CFF] hover:bg-[#0057FF] text-white h-14 text-lg font-semibold rounded-xl transition-all duration-300"
               >
-                Send Message
-                <Send className="ml-2 h-5 w-5" />
-              </Button>
-            </form>
-          </motion.div>
+                <Mail className="mr-2 h-5 w-5" />
+                Email Me Directly
+              </a>
+
+              <a
+                href="https://www.linkedin.com/in/muskan-rajak-387b81233/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-flex items-center justify-center border border-white/20 hover:bg-white/10 text-white h-14 text-lg font-semibold rounded-xl transition-all duration-300"
+              >
+                <Linkedin className="mr-2 h-5 w-5" />
+                Connect on LinkedIn
+              </a>
+            </div>
+
+            <div className="mt-8 p-6 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10">
+              <h4 className="font-semibold text-lg mb-3">
+                Available For
+              </h4>
+
+              <ul className="space-y-2 text-gray-300">
+                <li>• Research Collaboration</li>
+                <li>• Academic Writing & Editing</li>
+                <li>• Literature Reviews</li>
+                <li>• Research Assistance</li>
+                <li>• Content Strategy</li>
+              </ul>
+            </div>
+           </motion.div>
         </div>
-      </div>
+
+      </div> {/* container */}
+
     </section>
   );
 }
+

@@ -30,7 +30,7 @@ const services = [
     ],
     turnaround: "2–5 Business Days",
     revisions: "2 Revision Rounds",
-    price: "₹0.80 - ₹1.75 per word",
+    price: "From ₹0.80 per word"
   },
 
   {
@@ -54,7 +54,7 @@ const services = [
     ],
     turnaround: "5–10 Business Days",
     revisions: "2 Revision Rounds",
-    price: "Starting at ₹6,000",
+    price: "From ₹5,500"
   },
 
   {
@@ -78,7 +78,7 @@ const services = [
     ],
     turnaround: "Custom Timeline",
     revisions: "Ongoing Support",
-    price: "Starting at ₹4,000",
+    price: "From ₹4,000"
   },
 
   {
@@ -102,7 +102,7 @@ const services = [
     ],
     turnaround: "3–7 Business Days",
     revisions: "2 Revision Rounds",
-    price: "Starting at ₹3,000",
+    price: "From ₹3,000"
   },
 
   {
@@ -126,7 +126,7 @@ const services = [
     ],
     turnaround: "2–4 Business Days",
     revisions: "2 Revision Rounds",
-    price: "₹1.50 - ₹3 per word",
+    price: "From ₹1.50 per word"
   },
 
   {
@@ -150,7 +150,7 @@ const services = [
     ],
     turnaround: "2–3 Business Days",
     revisions: "2 Revision Rounds",
-    price: "Starting at ₹3,500",
+    price: "From ₹6,000"
   },
 ];
 
@@ -227,9 +227,6 @@ export function ServicesSection() {
                     </div>
                     
                     <div className="mt-auto pt-6 border-t border-gray-100">
-                      <div className="flex items-center justify-between mb-4">
-                        <span className="text-lg font-bold text-[#003CFF]">{service.price}</span>
-                      </div>
                       <Button
                         variant="outline"
                         className="w-full border-[#003CFF] text-[#003CFF] hover:bg-[#003CFF] hover:text-white"
@@ -351,7 +348,7 @@ export function ServicesSection() {
 
           <div className="flex justify-between items-center mb-6">
             <span className="text-gray-600">
-              Starting Price
+              Starting Price: 
             </span>
 
             <span className="text-2xl font-bold text-[#003CFF]">

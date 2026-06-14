@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { Quote, Star } from "lucide-react";
-import { useState } from "react";
+
 
 const testimonials = [
   {
@@ -30,7 +30,6 @@ const testimonials = [
 ];
 
 export function TestimonialsSection() {
-  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <section className="py-24 bg-gradient-to-br from-[#F8FAFC] to-white relative overflow-hidden">
@@ -55,102 +54,73 @@ export function TestimonialsSection() {
           </p>
         </motion.div>
 
-        <div className="max-w-5xl mx-auto">
-          {/* Main Testimonial Display */}
-          <motion.div
-            key={activeIndex}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="bg-white rounded-3xl p-12 shadow-2xl border border-gray-100 relative"
-          >
-            {/* Quote Icon */}
-            <div className="absolute top-8 right-8 w-20 h-20 rounded-full bg-gradient-to-br from-[#003CFF]/10 to-[#4F7CFF]/10 flex items-center justify-center">
-              <Quote className="w-10 h-10 text-[#003CFF]" />
-            </div>
+        <div className="max-w-7xl mx-auto overflow-hidden">
+  <motion.div
+  whileHover={{}}
+  animate={{
+    x: ["0%", "-50%"],
+  }}
+    transition={{
+      duration: 30,
+      repeat: Infinity,
+      ease: "linear",
+    }}
+    className="flex gap-6 w-max"
+  >
+    {[...testimonials, ...testimonials].map((testimonial, index) => (
+  <motion.div
+    key={index}
+    whileHover={{
+      y: -8,
+      scale: 1.02,
+    }}
+    className="w-[300px] sm:w-[360px] lg:w-[420px] bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-gray-100 flex-shrink-0 hover:shadow-2xl transition-all duration-300"
+  >
+        {/* Stars */}
+        <div className="flex gap-1 mb-5">
+          {[...Array(testimonial.rating)].map((_, i) => (
+            <Star
+              key={i}
+              className="w-4 h-4 fill-[#003CFF] text-[#003CFF]"
+            />
+          ))}
+        </div>
 
-            {/* Stars */}
-            <div className="flex gap-1 mb-6">
-              {[...Array(testimonials[activeIndex].rating)].map((_, i) => (
-                <Star key={i} className="w-6 h-6 fill-[#003CFF] text-[#003CFF]" />
-              ))}
-            </div>
+        {/* Quote */}
+        <p
+          className="text-gray-700 leading-relaxed mb-8 text-sm sm:text-base"
+          style={{ fontFamily: "var(--font-body)" }}
+        >
+          "{testimonial.quote}"
+        </p>
 
-            {/* Quote */}
-            <p className="text-2xl text-gray-700 mb-8 leading-relaxed italic" style={{ fontFamily: 'var(--font-body)' }}>
-              "{testimonials[activeIndex].quote}"
+        {/* Author */}
+        <div className="flex items-center gap-4">
+          <img
+            src={testimonial.image}
+            alt={testimonial.name}
+            className="w-14 h-14 rounded-full object-cover border-2 border-[#003CFF]"
+          />
+
+          <div>
+            <h4 className="font-bold text-[#0F172A]">
+              {testimonial.name}
+            </h4>
+
+            <p className="text-sm text-gray-600">
+              {testimonial.role}
             </p>
 
-            {/* Author Info */}
-            <div className="flex items-center gap-4">
-              <img
-                src={testimonials[activeIndex].image}
-                alt={testimonials[activeIndex].name}
-                className="w-16 h-16 rounded-full object-cover border-2 border-[#003CFF]"
-              />
-              <div>
-                <h4 className="text-xl font-bold text-[#0F172A]">{testimonials[activeIndex].name}</h4>
-                <p className="text-gray-600">{testimonials[activeIndex].role}</p>
-                <p className="text-sm text-gray-500">{testimonials[activeIndex].institution}</p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Navigation Dots */}
-          <div className="flex justify-center gap-3 mt-8">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveIndex(index)}
-                className={`transition-all duration-300 rounded-full ${
-                  index === activeIndex
-                    ? "w-12 h-3 bg-gradient-to-r from-[#003CFF] to-[#4F7CFF]"
-                    : "w-3 h-3 bg-gray-300 hover:bg-gray-400"
-                }`}
-                aria-label={`View testimonial ${index + 1}`}
-              />
-            ))}
-          </div>
-
-          {/* All Testimonials Preview */}
-          <div className="grid md:grid-cols-3 gap-6 mt-16">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -4 }}
-                onClick={() => setActiveIndex(index)}
-                className={`cursor-pointer bg-white rounded-2xl p-6 border transition-all duration-300 ${
-                  index === activeIndex
-                    ? "border-[#003CFF] shadow-lg"
-                    : "border-gray-100 hover:border-gray-200 shadow"
-                }`}
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
-                  <div>
-                    <h5 className="font-semibold text-[#0F172A]">{testimonial.name}</h5>
-                    <p className="text-sm text-gray-600">{testimonial.role}</p>
-                  </div>
-                </div>
-                <div className="flex gap-0.5 mb-2">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-3 h-3 fill-[#003CFF] text-[#003CFF]" />
-                  ))}
-                </div>
-                <p className="text-sm text-gray-600 line-clamp-3">"{testimonial.quote}"</p>
-              </motion.div>
-            ))}
+            <p className="text-xs text-gray-500">
+              {testimonial.institution}
+            </p>
           </div>
         </div>
-      </div>
+      </motion.div>
+    ))}
+  </motion.div>
+</div>
+        </div>
     </section>
   );
 }
